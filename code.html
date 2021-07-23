@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
-    <title>App Name: A Coding Project by Nebojsa</title>
+    <title>Loop Century: A Coding Project by Nebojsa</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -16,6 +16,14 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <!-- Google Fonts Racing Sans One -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap"
+      rel="stylesheet"
+    />
+
     <script
       src="https://kit.fontawesome.com/5db21ba9c6.js"
       crossorigin="anonymous"
@@ -29,14 +37,14 @@
     <!-- === Nav Section === -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"
+        <a class="navbar-brand logoFont" href="index.html"
           ><img
             src="img/icon.png"
             class="d-inline-block align-text-top"
             height="24"
             alt="Nebojsa Logo"
           />
-          APP NAME</a
+          LOOP CENTURY</a
         >
         <button
           class="navbar-toggler"
@@ -63,7 +71,12 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" target="_blank">GitHub Repo</a>
+              <a
+                class="nav-link"
+                href="https://github.com/nradojcic/Loop-Century"
+                target="_blank"
+                >GitHub Repo</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://nebojsa.ca" target="_blank"
@@ -79,26 +92,134 @@
     <main class="flex-shrink-0">
       <div class="container py-5 px-5 mt-5">
         <h2 class="border-1 border-bottom border-dark">
-          The Code for APP NAME
+          The Code for <span class="logoFont">LOOP CENTURY</span>
         </h2>
         <div class="row row-cols-1 row-cols-lg-2">
-          <!-- Left - Prism Code - paste your code between <code> tags -->
+          <!-- Left - Prism.js Code - paste your code between <code> tags -->
           <div class="col-lg-8">
             <pre class="line-numbers"><code class="language-javascript">
-                // Call Hello World
-                function HelloWorld() {
-                    alert("Hello World");
+                // get the values from the page, call other functions
+                // Contoller function
+                function getValues() {
+
+                  // get the values from the page
+                  let startValue = document.getElementById("startValue").value;
+                  let endValue = document.getElementById("endValue").value;
+
+                  // validate input, parse into integers
+                  startValue = parseInt(startValue);
+                  endValue = parseInt(endValue);
+
+                  if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                  
+                    // generate numbers
+                    let numbers = generateNumbers(startValue, endValue);
+                  
+                    // display numbers
+                    displayNumbers(numbers);
+                  
+                  } else {
+                    alert("You must enter integers!");
+                  }
+                }
+
+                // generate numbers from startValue to endValue
+                // Logic function
+                function generateNumbers(startValue, endValue) {
+                  
+                  let numbers = [];
+
+                  // get all numbers from start to end value
+                  for (let index = startValue; index <= endValue; index++) {
+                    numbers.push(index);
+                  }
+
+                  return numbers;
+                }
+
+                // display the numbers and mark the even ones bold
+                // Disaplay or View function
+                function displayNumbers(numbers) {
+                  
+                  let templateRows = "";
+
+                  for (let index = 0; index < numbers.length; index++) {
+                    let className = "even";
+                    let number = numbers[index];
+
+                    // assign CSS classes
+                    if (number % 2 == 0) {
+                      className = "even";
+                    } else {
+                      className = "odd";
+                    }
+
+                    // construct a table row, and add it to others
+                    templateRows += `&lt;tr>&lt;td class="${className}">${number}&lt;/td>&lt;/tr>`;
+                  }
+
+                  // display the whole table
+                  document.getElementById("results").innerHTML = templateRows;
                 }
                 </code>
             </pre>
           </div>
           <!-- Right - Code Description -->
           <div class="col-lg-4">
-            <p>The Code is structured in one function.</p>
-            <h5>Hello World</h5>
+            <p class="mt-3">
+              The Code is structured in <strong>three functions</strong>.
+            </p>
+            <h5 class="mt-4">1) <strong>getValues</strong> function</h5>
             <p>
-              Hello World is a function that displays an allert with a message
-              of "Hello World"
+              Function <strong>getValues</strong> is the Controller function. It
+              is triggered by an onClick event connected to a button on the App
+              page. It then collects Start and End Values from the input fields
+              on the page, and routes requests to other functions.
+            </p>
+            <p>
+              It validates the input, converting the values to integers. If
+              entered values are valid integer numbers it will call the
+              <strong>generateNumbers</strong> function and then the
+              <strong>displayNumbers</strong> function, otherwise it will show
+              an alert to enter only integer values.
+            </p>
+            <h5 class="mt-5">2) <strong>generateNumbers</strong> function</h5>
+            <p>
+              Function <strong>generateNumbers</strong> is the Logic function.
+              It generates numbers from Start to End Values.
+            </p>
+            <p>
+              It accepts Start and End Value arguments, and then runs a FOR
+              loop, adding values one by one to <strong>numbers</strong> array.
+              The function then returns the <strong>numbers</strong> array.
+            </p>
+            <h5 class="mt-5">3) <strong>displayNumbers</strong> function</h5>
+            <p>
+              Function <strong>displayNumbers</strong> is the View function. It
+              displays numbers on the web page.
+            </p>
+            <p>
+              It accepts an array of numbers as the argument. And then uses
+              template strings to format an output table.
+            </p>
+            <p>
+              A FOR loop runs from the start to the end of
+              <strong>numbers</strong> array. For each
+              <strong>number</strong> we check if it's odd or even, and assign
+              them appropriate <strong>odd</strong> or <strong>even</strong> CSS
+              class name.
+            </p>
+            <p>
+              Each output table row is then constructed using template literals.
+              It consists of &lt;tr> and &lt;td> HTML elements with interpolated
+              values of each number and its appropriate CSS class name. Table
+              row is then concatenated to the previous ones.
+            </p>
+            <p>
+              After all the rows have been added together,
+              <strong>tableRows</strong> template string containing data for the
+              whole table is pushed to the HTML page and displayed on the
+              screen.
             </p>
           </div>
         </div>
@@ -150,7 +271,7 @@
                   ><i class="fab fa-github fa-2x"></i
                 ></a>
               </div>
-              <div class="col social">
+              <!-- <div class="col social">
                 <a href="#" target="_blank"
                   ><i class="fab fa-twitter fa-2x"></i
                 ></a>
@@ -159,7 +280,7 @@
                 <a href="#" target="_blank"
                   ><i class="fab fa-youtube fa-2x"></i
                 ></a>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

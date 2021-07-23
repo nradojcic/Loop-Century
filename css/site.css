@@ -1,8 +1,12 @@
 :root {
   --primary-color: #1d5888;
-  --secondary-color: #ff993b;
+  --secondary-color: #ec6b41;
   --dark-color: #292929;
   --white-color: #e7e7e7;
+}
+
+main > .container {
+  padding: 60px 15px 0;
 }
 
 body {
@@ -11,6 +15,10 @@ body {
 
 nav {
   background-color: var(--dark-color);
+}
+
+.logoFont {
+  font-family: "Racing Sans One", cursive;
 }
 
 footer {
@@ -65,6 +73,15 @@ pre[class*="language-"] {
   font-size: 1.5rem;
 }
 
-main > .container {
-  padding: 60px 15px 0;
+.odd {
+  font-weight: 200;
+}
+
+.even {
+  font-weight: bold;
+  font-size: large;
+}
+
+#btnSubmit {
+  background-color: var(--secondary-color) !important;
 }
